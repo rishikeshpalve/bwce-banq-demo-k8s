@@ -72,12 +72,6 @@
               </run>
             </image>
           </images>
-          <authConfig>
-		      <push>
-		         <username>_token</username>
-		         <password>ya29.GlvtA3VohEasa3XGiYlwo6zbCHugsRa3SOvHLypHVp4Ya3D76pjtH-zRJjZP2gmBA6QJsQRhAwDyT2XUp14Ut1CZSUHh1nbRHdPFIH4N2xvcETheNOAOhR42-k7Z</password>
-		      </push>
-		    </authConfig>
         </configuration>
       </plugin>
       <plugin>
