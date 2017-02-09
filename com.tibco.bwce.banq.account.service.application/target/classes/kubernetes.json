@@ -1,0 +1,102 @@
+{
+  "apiVersion" : "v1",
+  "items" : [ {
+    "apiVersion" : "v1",
+    "kind" : "Service",
+    "metadata" : {
+      "annotations" : { },
+      "labels" : {
+        "project" : "banq-app",
+        "container" : "banq-app",
+        "provider" : "Tibco",
+        "group" : "banq-app",
+        "version" : "1.0.0-SNAPSHOT"
+      },
+      "name" : "banq-service"
+    },
+    "spec" : {
+      "deprecatedPublicIPs" : [ ],
+      "externalIPs" : [ ],
+      "ports" : [ {
+        "port" : 80,
+        "protocol" : "TCP",
+        "targetPort" : 8080
+      } ],
+      "selector" : {
+        "project" : "banq-app",
+        "container" : "banq-app",
+        "provider" : "Tibco",
+        "group" : "banq-app"
+      },
+      "type" : "LoadBalancer"
+    }
+  }, {
+    "apiVersion" : "v1",
+    "kind" : "ReplicationController",
+    "metadata" : {
+      "annotations" : { },
+      "labels" : {
+        "project" : "banq-app",
+        "container" : "banq-app",
+        "provider" : "Tibco",
+        "group" : "banq-app",
+        "version" : "1.0.0-SNAPSHOT"
+      },
+      "name" : "banq-app"
+    },
+    "spec" : {
+      "replicas" : 1,
+      "selector" : {
+        "project" : "banq-app",
+        "container" : "banq-app",
+        "provider" : "Tibco",
+        "group" : "banq-app",
+        "version" : "1.0.0-SNAPSHOT"
+      },
+      "template" : {
+        "metadata" : {
+          "annotations" : { },
+          "labels" : {
+            "project" : "banq-app",
+            "container" : "banq-app",
+            "provider" : "Tibco",
+            "group" : "banq-app",
+            "version" : "1.0.0-SNAPSHOT"
+          }
+        },
+        "spec" : {
+          "containers" : [ {
+            "args" : [ ],
+            "command" : [ ],
+            "env" : [ {
+              "name" : "APP_CONFIG_PROFILE",
+              "value" : "Cloud"
+            }, {
+              "name" : "BW_PROFILE",
+              "value" : "Cloud"
+            }, {
+              "name" : "CONSUL_SERVER_URL",
+              "value" : "http://35.154.2.45:8500"
+            }, {
+              "name" : "KUBERNETES_NAMESPACE",
+              "valueFrom" : {
+                "fieldRef" : {
+                  "fieldPath" : "metadata.namespace"
+                }
+              }
+            } ],
+            "image" : "gcr.io/bwce-banqdemo-rishi/banq",
+            "name" : "banq-app",
+            "ports" : [ ],
+            "securityContext" : { },
+            "volumeMounts" : [ ]
+          } ],
+          "imagePullSecrets" : [ ],
+          "nodeSelector" : { },
+          "volumes" : [ ]
+        }
+      }
+    }
+  } ],
+  "kind" : "List"
+}

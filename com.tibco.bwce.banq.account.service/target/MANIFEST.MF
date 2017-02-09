@@ -1,0 +1,21 @@
+Manifest-Version: 1.0.0-SNAPSHOT
+Bundle-ClassPath: .
+TIBCO-BWCE-Edition-Target: docker
+Bundle-Name: Com Tibco Bwce Banq Account Service Module
+TIBCO-BW-ConfigProfile: META-INF/default.substvar
+TIBCO-BW-ApplicationModule: META-INF/module.bwm
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)",com.tib
+ co.bw.palette; filter:="(name=bw.generalactivities)",com.tibco.bw.pal
+ ette; filter:="(name=bw.jdbc)",com.tibco.bw.sharedresource.model; fil
+ ter:="(name=bw.httpconnector)",com.tibco.bw.sharedresource.model; fil
+ ter:="(name=bw.jdbc)",com.tibco.bw.binding.model; filter:="(name=bw.r
+ est)"
+Bundle-Vendor: TIBCO Software Inc.
+TIBCO-BW-Version: 2.0.0 V31 2016-05-02
+TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
+Bundle-Version: 1.0.0.201702090914
+TIBCO-BW-JobSharedVariables: META-INF/module.jsv
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.tibco.bwce.banq.account.service
+TIBCO-BW-Edition: bwcf
+
