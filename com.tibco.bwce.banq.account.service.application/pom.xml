@@ -11,6 +11,7 @@
   <artifactId>com.tibco.bwce.banq.account.service.application</artifactId>
   <packaging>bwear</packaging>
   <properties>
+    <docker.env.property.file>docker-host-env-dev.properties</docker.env.property.file>
     <k8s.property.file>k8s-dev.properties</k8s.property.file>
     <docker.property.file>docker-dev.properties</docker.property.file>
   </properties>
@@ -38,6 +39,7 @@
           <files>
             <file>${docker.property.file}</file>
             <file>${k8s.property.file}</file>
+            <file>${docker.env.property.file}</file>
           </files>
         </configuration>
       </plugin>
@@ -69,6 +71,14 @@
               </build>
               <run>
                 <namingStrategy>alias</namingStrategy>
+                <ports>
+                  <port>${bwdocker.port.p0}</port>
+                  <port>${bwdocker.port.p1}</port>
+                </ports>
+                <links>
+                  <link>${bwdocker.link.l0}</link>
+                </links>
+                <envPropertyFile>${docker.env.property.file}</envPropertyFile>
               </run>
             </image>
           </images>
