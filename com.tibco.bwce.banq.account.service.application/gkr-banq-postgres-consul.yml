@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: banq-service
+  labels:
+    app: banq-service
+spec:
+  type: LoadBalancer 
+  ports:
+  - port: 80
+    targetPort: 18080
+  selector:
+    app: banq-app
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: banq-app
+spec:
+  replicas: 1
+  selector:
+    app: banq-app
+  template:
+    metadata:
+      name: banq-app
+      labels:
+        app: banq-app
+    spec:
+      containers:
+        - name: banq-app
+          image: gcr.io/bwce-banq-demo/banq
+          env: 
+            - name: BW_PROFILE
+              value: "Cloud"
+            - name: APP_CONFIG_PROFILE
+              value: "Cloud"
+            - name: CONSUL_SERVER_URL
+              value: 'http://104.198.86.141:80'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 18080
+
